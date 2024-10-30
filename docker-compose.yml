@@ -57,16 +57,16 @@ services:
     env_file:
       - ./hadoop.env
   
-  jupyter_notebook:
+  pysparkjupyter:
+    build: ./pysparkjupyter
     container_name: pysparkjupyter
-    image: jupyter/pyspark-notebook:latest
     platform: linux/amd64
     user: root
     volumes:
       - jupyter_data:/home/jovyan/work
     ports:
-      - '8080:8080'
-      - '8888:8888'   # this port is for jupyter notebook
+      - 8080:8080
+      - 8888:8888   # this port is for jupyter notebook
     environment:
       - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
   
