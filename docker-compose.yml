@@ -58,12 +58,12 @@ services:
       - ./hadoop.env
   
   jupyter_notebook:
-    container_name: pyspark_jupyter
+    container_name: pysparkjupyter
     image: jupyter/pyspark-notebook:latest
     platform: linux/amd64
+    user: root
     volumes:
-      - "./scripts/sparkdata:/sparkdata"
-      - "./scripts/work:/home/jovyan/work"
+      - jupyter_data:/home/jovyan/work
     ports:
       - '8080:8080'
       - '8888:8888'   # this port is for jupyter notebook
@@ -74,3 +74,4 @@ volumes:
   hadoop_namenode:
   hadoop_datanode:
   hadoop_historyserver:
+  jupyter_data:
